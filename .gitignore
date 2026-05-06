@@ -1,0 +1,19 @@
+# Virtual env
+.venv/
+__pycache__/
+*.pyc
+
+# Environment secrets
+.env
+
+# Database
+*.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+Thumbs.db
+.DS_Store

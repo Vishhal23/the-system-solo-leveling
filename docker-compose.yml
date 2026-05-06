@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  bot:
+    build: .
+    container_name: system_bot
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - system_data:/app
+    command: python run_bot.py
+
+  dashboard:
+    build: .
+    container_name: system_dashboard
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "8501:8501"
+    volumes:
+      - system_data:/app
+    command: streamlit run ui/dashboard.py --server.address 0.0.0.0
+
+volumes:
+  system_data:

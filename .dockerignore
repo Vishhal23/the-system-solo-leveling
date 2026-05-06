@@ -1,0 +1,24 @@
+# Virtual env
+.venv/
+__pycache__/
+*.pyc
+
+# Environment
+.env
+
+# Database (will be created fresh on deploy)
+*.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Tests / Cache
+.pytest_cache/
+tests/
+
+# Misc
+list_models.py
+test_first_quest.py
+walkthrough.md
