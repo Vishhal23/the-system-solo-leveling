@@ -15,6 +15,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+from streamlit_autorefresh import st_autorefresh
 
 from config.settings import USER_ID
 from db.models import get_user_stats, get_task_history, get_total_tasks, get_todays_quests
@@ -27,6 +28,9 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="collapsed",
 )
+
+# Auto-refresh the dashboard every 10 seconds so it stays in sync with the bot
+st_autorefresh(interval=10_000, limit=None, key="dashboard_autorefresh")
 
 # Custom CSS for Solo Leveling aesthetic
 st.markdown(
@@ -71,7 +75,7 @@ st.markdown(
 
 # ── Data Loading ────────────────────────────────────────
 
-@st.cache_data(ttl=5) # Refresh every 5 seconds
+@st.cache_data(ttl=2) # Short TTL — autorefresh handles reloading
 def load_data():
     stats = get_user_stats(USER_ID)
     history = get_task_history(USER_ID, limit=50)

@@ -9,3 +9,4 @@ apscheduler>=3.10.0
 streamlit>=1.30.0
 pandas>=2.0.0
 plotly>=5.18.0
+streamlit-autorefresh>=1.2.0
