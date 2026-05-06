@@ -20,8 +20,12 @@ COPY . .
 # Initialize the database on build so it's ready at startup
 RUN python -c "from db.database import init_database; init_database()"
 
-# Expose Streamlit port (Render injects $PORT at runtime)
+# Expose the port Streamlit uses
 EXPOSE 8501
 
-# Default: run the Telegram bot (overridden by render.yaml for dashboard)
-CMD ["python", "run_bot.py"]
+# Copy and make the startup script executable
+COPY start.sh .
+RUN chmod +x start.sh
+
+# Run the startup script
+CMD ["./start.sh"]
